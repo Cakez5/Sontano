@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sontano Suites | About</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body id="top">
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Main navigation">
+        <a href="#top" class="brand" aria-label="Sontano Suites home">Sontano Suites</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#pictures">Pictures</a>
+          <a href="#booking">Book</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero container" id="about">
+        <div class="hero-copy">
+          <p class="eyebrow">Boutique stays</p>
+          <h1>Relax in a space designed to feel like home.</h1>
+          <p>
+            Sontano Suites offers a warm, stylish place to unwind with thoughtfully
+            curated interiors, comfortable living spaces, and a welcoming atmosphere
+            for every guest.
+          </p>
+          <div class="cta-row">
+            <a
+              class="primary-btn"
+              href="https://www.booking.com/"
+              target="_blank"
+              rel="noreferrer"
+              >Book Your Stay</a
+            >
+            <a class="secondary-btn" href="#pictures">View Pictures</a>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <img
+            src="images/Logo.png"
+            alt="Elegant boutique suite interior"
+          />
+        </div>
+      </section>
+
+      <section class="features container" aria-label="Key features">
+        <article class="feature-card">
+          <img src="images/IMG_3936.jpeg" alt="Comfortable suite room" />
+          <h2>Comfort</h2>
+          <p>Thoughtful details and cozy rooms designed for easy, restful stays.</p>
+        </article>
+        <article class="feature-card">
+          <img src="images/IMG_3744.jpeg" alt="Styled boutique interior" />
+          <h2>Style</h2>
+          <p>Modern finishes and welcoming design that feel elevated and personal.</p>
+        </article>
+        <article class="feature-card">
+          <img src="images/IMG_3403.jpeg" alt="Beautiful local surroundings" />
+          <h2>Location</h2>
+          <p>Perfectly placed for a getaway that feels both convenient and peaceful.</p>
+        </article>
+      </section>
+
+      <section class="gallery container" id="pictures">
+        <div class="section-heading">
+          <p class="eyebrow">Pictures</p>
+          <h2>Take a look around</h2>
+        </div>
+
+        <div class="gallery-carousel" aria-label="Photo gallery carousel">
+          <button class="carousel-btn prev" type="button" aria-label="Previous photos">
+            ‹
+          </button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+                <div class="gallery-card">
+                <img src="images/IMG_2700.jpeg" alt="Suite bedroom" />
+              </div>
+              <div class="gallery-card">
+                <img src="images/IMG_0523.jpeg" alt="Suite bedroom" />
+              </div>
+              <div class="gallery-card">
+                <img src="images/IMG_3403.jpeg" alt="Interior seating area" />
+              </div>
+              <div class="gallery-card">
+                <img src="images/IMG_3744.jpeg" alt="Modern kitchen and dining area" />
+              </div>
+              <div class="gallery-card">
+                <img src="images/IMG_3936.jpeg" alt="Luxury bedroom design" />
+              </div>
+              <div class="gallery-card">
+                <img src="images/IMG_3938.jpeg" alt="Luxury bedroom design" />
+              </div>
+              <div class="gallery-card">
+                <img src="images/IMG_3939.jpeg" alt="Luxury bedroom design" />
+              </div>
+            </div>
+          </div>
+
+          <button class="carousel-btn next" type="button" aria-label="Next photos">
+            ›
+          </button>
+        </div>
+      </section>
+
+      <section class="booking container" id="booking">
+        <div class="booking-card">
+          <div>
+            <p class="eyebrow">Reserve</p>
+            <h2>Plan your stay</h2>
+          </div>
+          <a
+            class="primary-btn"
+            href="https://www."
+            target="_blank"
+            rel="noreferrer"
+            >Visit Booking Site</a
+          >
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <p>Copyright © 2026 Sontano Suites. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const track = document.querySelector('.carousel-track');
+      const cards = Array.from(document.querySelectorAll('.gallery-card'));
+      const prevButton = document.querySelector('.carousel-btn.prev');
+      const nextButton = document.querySelector('.carousel-btn.next');
+
+      let index = 0;
+
+      function getVisibleCount() {
+        if (window.innerWidth < 560) return 1;
+        if (window.innerWidth < 900) return 2;
+        return 3;
+      }
+
+      function updateCarousel() {
+        const visibleCount = getVisibleCount();
+        const maxIndex = Math.max(0, cards.length - visibleCount);
+        index = Math.min(index, maxIndex);
+
+        const cardGap = 16;
+        const cardWidth = cards[0].getBoundingClientRect().width + cardGap;
+        track.style.transform = `translateX(-${index * cardWidth}px)`;
+
+        prevButton.disabled = index === 0;
+        nextButton.disabled = index >= maxIndex;
+        prevButton.style.opacity = index === 0 ? '0.45' : '1';
+        nextButton.style.opacity = index >= maxIndex ? '0.45' : '1';
+      }
+
+      prevButton.addEventListener('click', () => {
+        if (index > 0) {
+          index -= 1;
+          updateCarousel();
+        }
+      });
+
+      nextButton.addEventListener('click', () => {
+        const maxIndex = Math.max(0, cards.length - getVisibleCount());
+        if (index < maxIndex) {
+          index += 1;
+          updateCarousel();
+        }
+      });
+
+      window.addEventListener('resize', updateCarousel);
+      updateCarousel();
+    </script>
+  </body>
+</html>
