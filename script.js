@@ -1,33 +1,3 @@
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('#primary-navigation');
-const navLinkItems = Array.from(document.querySelectorAll('#primary-navigation a'));
-
-function closeMenu() {
-  if (!navToggle || !navLinks) return;
-  navToggle.setAttribute('aria-expanded', 'false');
-  navToggle.setAttribute('aria-label', 'Open menu');
-  navLinks.classList.remove('is-open');
-}
-
-if (navToggle && navLinks) {
-  navToggle.addEventListener('click', () => {
-    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', String(!isExpanded));
-    navToggle.setAttribute('aria-label', isExpanded ? 'Open menu' : 'Close menu');
-    navLinks.classList.toggle('is-open', !isExpanded);
-  });
-
-  navLinkItems.forEach((link) => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 760) {
-      closeMenu();
-    }
-  });
-}
-
 const track = document.querySelector('.carousel-track');
 const cards = Array.from(document.querySelectorAll('.gallery-card'));
 const prevButton = document.querySelector('.carousel-btn.prev');
