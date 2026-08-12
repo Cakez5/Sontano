@@ -10,7 +10,18 @@
     <header class="site-header">
       <nav class="navbar container" aria-label="Main navigation">
         <a href="#top" class="brand" aria-label="Sontano Suites home">Sontano Suites</a>
-        <div class="nav-links">
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links" id="primary-navigation">
           <a href="#about">About</a>
           <a href="#pictures">Pictures</a>
           <a href="#booking">Book</a>
@@ -21,7 +32,7 @@
     <main>
       <section class="hero container" id="about">
         <div class="hero-copy">
-          <p class="eyebrow">Boutique stays</p>
+          <p class="eyebrow">A Beauty Collective</p>
           <h1>Relax in a space designed to feel like home.</h1>
           <p>
             Sontano Suites offers a warm, stylish place to unwind with thoughtfully
@@ -31,7 +42,7 @@
           <div class="cta-row">
             <a
               class="primary-btn"
-              href="https://www.booking.com/"
+              href="https://book.squareup.com/appointments/dc8i5x61kawjlx/location/LKZJC5EYK8SJ0/services"
               target="_blank"
               rel="noreferrer"
               >Book Your Stay</a
@@ -131,52 +142,6 @@
       <p>Copyright © 2026 Sontano Suites. All rights reserved.</p>
     </footer>
 
-    <script>
-      const track = document.querySelector('.carousel-track');
-      const cards = Array.from(document.querySelectorAll('.gallery-card'));
-      const prevButton = document.querySelector('.carousel-btn.prev');
-      const nextButton = document.querySelector('.carousel-btn.next');
-
-      let index = 0;
-
-      function getVisibleCount() {
-        if (window.innerWidth < 560) return 1;
-        if (window.innerWidth < 900) return 2;
-        return 3;
-      }
-
-      function updateCarousel() {
-        const visibleCount = getVisibleCount();
-        const maxIndex = Math.max(0, cards.length - visibleCount);
-        index = Math.min(index, maxIndex);
-
-        const cardGap = 16;
-        const cardWidth = cards[0].getBoundingClientRect().width + cardGap;
-        track.style.transform = `translateX(-${index * cardWidth}px)`;
-
-        prevButton.disabled = index === 0;
-        nextButton.disabled = index >= maxIndex;
-        prevButton.style.opacity = index === 0 ? '0.45' : '1';
-        nextButton.style.opacity = index >= maxIndex ? '0.45' : '1';
-      }
-
-      prevButton.addEventListener('click', () => {
-        if (index > 0) {
-          index -= 1;
-          updateCarousel();
-        }
-      });
-
-      nextButton.addEventListener('click', () => {
-        const maxIndex = Math.max(0, cards.length - getVisibleCount());
-        if (index < maxIndex) {
-          index += 1;
-          updateCarousel();
-        }
-      });
-
-      window.addEventListener('resize', updateCarousel);
-      updateCarousel();
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
