@@ -121,16 +121,30 @@ main {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.9rem;
-  margin-top: 1.15rem;
+  margin-top: 0.75rem;
+  border-radius: 16px;
+  overflow: hidden;
+
 }
 
 .about-photos img {
   width: 100%;
   height: 260px;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   background: transparent;
-  border-radius: 0;
+  border-radius: 18px;
+  clip-path: inset(0 round 18px);
+  transform: scale(0.95);
   box-shadow: none;
+}
+
+.about-photos img:last-child {
+  object-position: center 35%;
+}
+
+.about-photos img:first-child {
+  object-position: center 45%;
 }
 
 .cta-row {
@@ -397,13 +411,10 @@ main {
 
 .email-line {
   margin: 0.7rem 0 0;
-  color: #000;
+  color: var(--muted-dark);
   font-weight: 600;
 }
 
-.email-line a {
-  color: #000;
-}
 
 .social-links {
   margin-top: 1rem;
